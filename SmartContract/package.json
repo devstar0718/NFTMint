@@ -1,8 +1,7 @@
 {
-  "name": "TEST-NFT",
+  "name": "NFTSmartContract",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/devstar0718/Elongate-GatorGang-SmartContract",
   "author": "Alex <devstart0718@gmail.com>",
   "license": "MIT",
   "dependencies": {

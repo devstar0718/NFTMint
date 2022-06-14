@@ -1,7 +1,7 @@
 {
-  "name": "NFT backend",
+  "name": "NFTbackend",
   "version": "1.0.0",
-  "description": "Node.js Restful NFT API with Node.js, Express and MySQL",
+  "description": "NFTBackend with Node.js, Express and MySQL",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,7 +15,7 @@
     "mysql",
     "restapi"
   ],
-  "author": "bezkoder",
+  "author": "Alex",
   "license": "ISC",
   "dependencies": {
     "connect-timeout": "^1.9.0",
