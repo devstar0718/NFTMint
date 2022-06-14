@@ -34,7 +34,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 In the project Backend directory, you can run:
 
 ### import Mysql database
-import nft.sql in Backend/__backup/nft.sql
+Import nft.sql in Backend/__backup/nft.sql
+Default config database name is nft(database, chartset UTF8)
 
 ### Config backend
 Backend/app/config/index.js
