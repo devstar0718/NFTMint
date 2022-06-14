@@ -27,6 +27,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
 
+
+
 ## Run Backend
 
 In the project Backend directory, you can run:
@@ -50,6 +52,8 @@ module.exports = {
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:8080) to view it in the browser.
+
+
 
 
 ## Run SmartContract
