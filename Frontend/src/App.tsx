@@ -42,9 +42,9 @@ function App() {
     if(nftState?.status === "Success"){
       uploadMetaData();
       toast({
-        position: 'bottom-left',
+        position: 'top',
         render: () => (
-          <Box color='white' p={3} bg='blue.500'>
+          <Box color='yellow' p={3} bg='blue.500'>
             Mint success
           </Box>
         ),
@@ -56,9 +56,9 @@ function App() {
     const { status } =  await mintNftApi(parseInt(tokenId), nftName, ipfsUrl, description, attr1, attr2);
     if(status !== "success"){
       return toast({
-        position: 'bottom-left',
+        position: 'top',
         render: () => (
-          <Box color='white' p={3} bg='blue.500'>
+          <Box color='yellow' p={3} bg='blue.500'>
             Error: API error
           </Box>
         ),
@@ -97,9 +97,9 @@ function App() {
   const mintClick = async () => {
     if(account === "" || account===undefined){
       return toast({
-        position: 'bottom-left',
+        position: 'top',
         render: () => (
-          <Box color='white' p={3} bg='blue.500'>
+          <Box color='yellow' p={3} bg='blue.500'>
             Please connect wallet
           </Box>
         ),
@@ -107,9 +107,9 @@ function App() {
     }
     if(!nftImg){
       return toast({
-        position: 'bottom-left',
+        position: 'top',
         render: () => (
-          <Box color='white' p={3} bg='blue.500'>
+          <Box color='yellow' p={3} bg='blue.500'>
             Error: NFT Image
           </Box>
         ),
@@ -117,7 +117,7 @@ function App() {
     }
     if(!nftName){
       return toast({
-        position: 'bottom-left',
+        position: 'top',
         render: () => (
           <Box color='white' p={3} bg='blue.500'>
             Error: NFT Name
@@ -127,9 +127,9 @@ function App() {
     }
     if(ipfsUrl === ""){
       return toast({
-        position: 'bottom-left',
+        position: 'top',
         render: () => (
-          <Box color='white' p={3} bg='blue.500'>
+          <Box color='yellow' p={3} bg='blue.500'>
             Error: IPFS error
           </Box>
         ),
@@ -137,9 +137,9 @@ function App() {
     }
     if(description === ""){
       return toast({
-        position: 'bottom-left',
+        position: 'top',
         render: () => (
-          <Box color='white' p={3} bg='blue.500'>
+          <Box color='yellow' p={3} bg='blue.500'>
             Error: Description error
           </Box>
         ),
@@ -147,9 +147,9 @@ function App() {
     }
     if(attr1 === ""){
       return toast({
-        position: 'bottom-left',
+        position: 'top',
         render: () => (
-          <Box color='white' p={3} bg='blue.500'>
+          <Box color='yellow' p={3} bg='blue.500'>
             Error: Attr1 error
           </Box>
         ),
@@ -157,9 +157,9 @@ function App() {
     }
     if(attr2 === ""){
       return toast({
-        position: 'bottom-left',
+        position: 'top',
         render: () => (
-          <Box color='white' p={3} bg='blue.500'>
+          <Box color='yellow' p={3} bg='blue.500'>
             Error: Attr2 error
           </Box>
         ),
