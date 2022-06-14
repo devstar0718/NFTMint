@@ -13,7 +13,7 @@ import { useState, useEffect } from "react"
 import Loading from "./components/Loading";
 import { useEthers } from "@usedapp/core";
 
-import { create as ipfsHttpClient } from "ipfs-http-client";
+import { create as ipfsHttpClient, CID } from "ipfs-http-client";
 
 import { useTokenId, useMintNft } from "./hooks";
 
@@ -66,6 +66,11 @@ function App() {
     }
   }
 
+  const toBase32= (value:string) => {
+    var cid = new CID(value)
+    return cid.toV1().toBaseEncodedString('base32')
+  }
+
   const onFileUpload =async (e:any) => {
     try{
       setNftImg(URL.createObjectURL(e.target.files[0]));
@@ -77,7 +82,9 @@ function App() {
             }
         })
         setLoading(false)
-        ipfsUrl = `https://ipfs.infura.io/ipfs/${added.path}`
+        console.log(added)
+        const path = toBase32(added.path)
+        ipfsUrl = `https://${path}.ipfs.infura-ipfs.io`
         console.log("upload image to ipfs success", ipfsUrl, new Date())
       }catch(e){
         setLoading(false)
