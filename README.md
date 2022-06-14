@@ -55,9 +55,9 @@ Runs the app in the development mode.\
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 ### API list
-GET    [http://localhost:8080/nftmint](http://localhost:8080/nftmint)
-POST   [http://localhost:8080/nftmint/](http://localhost:8080/nftmint/)
-GET    [http://localhost:8080/nftmint/:id](http://localhost:8080/nftmint/0)
+GET    [http://localhost:8080/nftmint](http://localhost:8080/nftmint) <br/>
+POST   [http://localhost:8080/nftmint/](http://localhost:8080/nftmint/) <br/>
+GET    [http://localhost:8080/nftmint/:id](http://localhost:8080/nftmint/0) <br/>
 
 
 
