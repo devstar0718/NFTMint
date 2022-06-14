@@ -1,5 +1,16 @@
 # NFTMint
 
+This is test project for NFT Minter which contains 3 projects - frontend, backend and smart contract
+
+I tested with rinkeby testnet of ethereum and opensea testnet and current frontend code includes deployed smart contract address and backend api url.
+
+### For testing yourself
+
+1. run the backend(including database - mysql) on the hosting(ngrok can be used if no server)
+2. deploy the smart contract with the url of backend
+3. change contract address and backend api on the frontend code and run the frontend of website
+
+
 ## Run Frontend
 
 In the project Frontend directory, you can run:
