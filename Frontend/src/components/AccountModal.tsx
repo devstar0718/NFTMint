@@ -81,7 +81,7 @@ export default function AccountModal({ isOpen, onClose }: Props) {
                 }}
                 onClick={handleDeactivateAccount}
               >
-                Change
+                Disconnect
               </Button>
             </Flex>
             <Flex alignItems="center" mt={2} mb={4} lineHeight={1}>
@@ -118,7 +118,7 @@ export default function AccountModal({ isOpen, onClose }: Props) {
                 fontSize="sm"
                 display="flex"
                 alignItems="center"
-                href={`https://ropsten.etherscan.io/address/${account}`}
+                href={`https://rinkeby.etherscan.io/address/${account}`}
                 isExternal
                 color="gray.400"
                 ml={6}

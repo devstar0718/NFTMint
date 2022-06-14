@@ -28,6 +28,9 @@ function App() {
 
   const [ nftImg, setNftImg ] = useState("");
   const [ nftName, setNftName ] = useState("");
+  const [ description, setDescription ] = useState("");
+  const [ attr1, setAttr1 ] = useState("");
+  const [ attr2, setAttr2 ] = useState("");
   const [ loading, setLoading ] = useState(false);
 
   const { account } = useEthers();
@@ -38,11 +41,19 @@ function App() {
   useEffect(() => {
     if(nftState?.status === "Success"){
       uploadMetaData();
+      toast({
+        position: 'bottom-left',
+        render: () => (
+          <Box color='white' p={3} bg='blue.500'>
+            Mint success
+          </Box>
+        ),
+      })
     }
   }, [nftState])
 
   const uploadMetaData = async () => {
-    const { status } =  await mintNftApi(parseInt(tokenId), nftName, ipfsUrl);
+    const { status } =  await mintNftApi(parseInt(tokenId), nftName, ipfsUrl, description, attr1, attr2);
     if(status !== "success"){
       return toast({
         position: 'bottom-left',
@@ -56,19 +67,22 @@ function App() {
   }
 
   const onFileUpload =async (e:any) => {
-    console.log(e.target.files[0]);
-    setNftImg(URL.createObjectURL(e.target.files[0]));
-    setLoading(true)
     try{
-      const added = await client.add(e.target.files[0], {
-          progress: (prog) => {
-              console.log(`recieved: ${prog}`)
-          }
-      })
-      setLoading(false)
-      ipfsUrl = `https://ipfs.infura.io/ipfs/${added.path}`
-      console.log("upload image to ipfs success", ipfsUrl, new Date())
-    }catch(e){
+      setNftImg(URL.createObjectURL(e.target.files[0]));
+      setLoading(true)
+      try{
+        const added = await client.add(e.target.files[0], {
+            progress: (prog) => {
+                console.log(`recieved: ${prog}`)
+            }
+        })
+        setLoading(false)
+        ipfsUrl = `https://ipfs.infura.io/ipfs/${added.path}`
+        console.log("upload image to ipfs success", ipfsUrl, new Date())
+      }catch(e){
+        setLoading(false)
+      }
+    }catch(e:any){
       setLoading(false)
     }
   }
@@ -114,6 +128,36 @@ function App() {
         ),
       })
     }
+    if(description === ""){
+      return toast({
+        position: 'bottom-left',
+        render: () => (
+          <Box color='white' p={3} bg='blue.500'>
+            Error: Description error
+          </Box>
+        ),
+      })
+    }
+    if(attr1 === ""){
+      return toast({
+        position: 'bottom-left',
+        render: () => (
+          <Box color='white' p={3} bg='blue.500'>
+            Error: Attr1 error
+          </Box>
+        ),
+      })
+    }
+    if(attr2 === ""){
+      return toast({
+        position: 'bottom-left',
+        render: () => (
+          <Box color='white' p={3} bg='blue.500'>
+            Error: Attr2 error
+          </Box>
+        ),
+      })
+    }
     mintNft()
   }
 
@@ -126,6 +170,9 @@ function App() {
         <Body>
           <Stack spacing={3}>
             <Input placeholder='NFT Name' size='md' color={"white"} value={nftName} onChange={(e:any)=>{ setNftName(e.target.value) }}/>
+            <Input placeholder='Description' size='md' color={"white"} value={description} onChange={(e:any)=>{ setDescription(e.target.value) }}/>
+            <Input placeholder='Attr1' size='md' color={"white"} value={attr1} onChange={(e:any)=>{ setAttr1(e.target.value) }}/>
+            <Input placeholder='Attr2' size='md' color={"white"} value={attr2} onChange={(e:any)=>{ setAttr2(e.target.value) }}/>
             <Box
               bg="white"
               top="0"

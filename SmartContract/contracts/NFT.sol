@@ -8,7 +8,7 @@ contract NFT is ERC721Enumerable, Ownable {
     using Counters for Counters.Counter;
 
     // token counter
-    Counters.Counter private _tokenIds;
+    Counters.Counter public tokenIds;
 
     // NFT Name
     string public constant TOKEN_NAME = "Alex Test NFT";
@@ -39,5 +39,10 @@ contract NFT is ERC721Enumerable, Ownable {
     function setBaseURI(string calldata uri) external onlyOwner {
         baseURI = uri;
         emit BaseURI(uri);
+    }
+
+    function mint() external {
+        _safeMint(msg.sender, tokenIds.current());
+        tokenIds.increment();
     }
 }

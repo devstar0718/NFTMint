@@ -1,8 +1,8 @@
 import Axios from "./instance";
 
-export const mintNftApi = (tokenId, nftName, ipfsUrl) => {
+export const mintNftApi = (tokenId, nftName, ipfsUrl, description, attr1, attr2) => {
     return new Promise((resolve, reject) => {
-        Axios.post('/mintNft', {tokenId: tokenId, name: nftName, ipfs: ipfsUrl} )
+        Axios.post('/nftmint', {tokenId: tokenId, name: nftName, ipfs: ipfsUrl, description: description, attr1: attr1, attr2: attr2} )
             .then((res) => {
                 resolve(res.data);
             })

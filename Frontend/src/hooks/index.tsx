@@ -1,11 +1,10 @@
 import { ethers } from "ethers";
 import { Contract } from '@usedapp/core/node_modules/ethers';
-import { ChainId, useContractCall, 
+import {  useContractCall, 
   // useContractFunction
  } from "@usedapp/core";
 import nftContractAbi from "../abi/nft.json";
 import { nftContractAddress } from "../contracts"
-import { useEthers } from "@usedapp/core";
 
 import { useContractFunction } from "../contracts/test";
 

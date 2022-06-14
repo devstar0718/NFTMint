@@ -7,11 +7,6 @@
  **/
 
 const nftModel = require("../models/nfts.model")
-const fs = require('fs')
-const { create } = require('ipfs-http-client')
-
-const ipfsClient = create( "http://ipfs.infura.io:5001/api/v0")
-
 
 /**
  * @method post
@@ -22,31 +17,31 @@ const ipfsClient = create( "http://ipfs.infura.io:5001/api/v0")
  * 
  * @dev create meta data nft
  **/
-exports.mintNFT = async (req, res, next) => {
+exports.nftmint = async (req, res, next) => {
   const tokenId = req.body.tokenId;
   const name = req.body.name;
   const ipfs = req.body.ipfs;
+  const description = req.body.description;
+  const attr1 = req.body.attr1;
+  const attr2 = req.body.attr2;
   
-  if(tokenId === "" || tokenId === undefined || name === "" || name == undefined || ipfs === "" || ipfs === undefined){
+  if(tokenId === "" || tokenId === undefined 
+    || name === "" || name == undefined 
+    || ipfs === "" || ipfs === undefined
+    || description === "" || description === undefined
+    || attr1 === "" || attr1 === undefined
+    || attr2 === "" || attr2 === undefined
+  ){
     return res.send({ status: "error", error: "param_error" });
   }
 
-  nftModel.getLastNft(async function(err, data){
+  return nftModel.createNft(tokenId, name, ipfs, description, attr1, attr2, function(data, err) {
     if(err){
-      return res.send({status: "error", error: "error_code_500"})  
+      console.log(err)
+      return res.send({status: "error", error: "param_error"})          
     }
-    const lastNFT = (data.length == 0) ? -1 : data[0]?.id;
-    if((lastNFT + 1) == tokenId){
-      return nftModel.createNft(tokenId, name, ipfs, function(data, err) {
-        if(err){
-          console.log(err)
-          return res.send({status: "error", error: "param_error"})          
-        }
-        return res.send({status: "success"})
-      });
-    }
-    return res.send({status: "error", error: "token_id_error"})
-  })
+    return res.send({status: "success"})
+  });
 };
 
 exports.getNftById = async (req, res, next) => {
@@ -64,10 +59,41 @@ exports.getNftById = async (req, res, next) => {
     const metaData = {
       id: data[0].id,
       name: data[0].name,
-      description: "This is a test NFT",
+      description: data[0].description,
+      attributes: [
+        {trait_type:"attr1","value":data[0].attr1},
+        {trait_type:"attr2","value":data[0].attr2}
+      ],
       image: data[0].ipfs,
       mintedAt: data[0].created_at
     }
     return res.send(metaData)
+  })
+};
+
+exports.getNftAll = async (req, res, next) => {
+  nftModel.getNftAll(function(data, err) {
+    if(err){
+      return res.send({ status: "error", error: "internal_error" })
+    }
+    if(data.length === 0){
+      return res.send([])
+    }
+    let metaDataArray = [];
+    data.map((item)=> {
+      const metaData = {
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        attributes: [
+          {trait_type:"attr1","value":item.attr1},
+          {trait_type:"attr2","value":item.attr2}
+        ],
+        image: item.ipfs,
+        mintedAt: item.created_at
+      }
+      metaDataArray.push(metaData)
+    })
+    return res.json(metaDataArray)
   })
 };
