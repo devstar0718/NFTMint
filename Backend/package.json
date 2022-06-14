@@ -1,0 +1,29 @@
+{
+  "name": "NFT backend",
+  "version": "1.0.0",
+  "description": "Node.js Restful NFT API with Node.js, Express and MySQL",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "env": "node env.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mysql",
+    "restapi"
+  ],
+  "author": "bezkoder",
+  "license": "ISC",
+  "dependencies": {
+    "connect-timeout": "^1.9.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "ipfs-http-client": "50.1.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.17.1",
+    "nodemon": "^2.0.15"
+  }
+}
